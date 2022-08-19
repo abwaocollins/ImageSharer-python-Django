@@ -1,0 +1,21 @@
+{%extends 'base.html'%}
+{%block title%}Detail page{%endblock%}
+{%block content%}
+
+<div class="container py-3">
+{{object.title}}
+{{object.description}}
+<div class="row">
+    <div class="col-lg-10 py-5 offset-sm-1">
+        <img src="{{object.image.url}}" class="img-fluid" alt="">
+    </div>
+    <div class="cont-btns">
+        <a href="{{object.image.url}} " download class="btn btn-success">Download Image</a>
+        <a class="btn btn-danger" href="{% url 'feed:delete' post.id %}">delete</a>
+    </div>
+    
+</div>
+</div>
+
+
+{%endblock%}

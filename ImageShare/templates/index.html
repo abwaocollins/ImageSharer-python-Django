@@ -1,0 +1,44 @@
+{%extends 'base.html'%}
+{%block title%}Home page{%endblock%}
+{%block content%}
+{% load thumbnail %}
+
+
+<div class="container ">
+  <h1>Greetings from Abwape</h1>
+<p>creativity takes courage....</p>
+<div class="row">
+    {%for post_item in posts %}
+    <div class="col-sm-12 col-md-6">
+        <div class="card mb-3" style="max-width: 540px;">
+            <div class="row g-0">
+              <div class="col-md-4" >   
+                {% thumbnail post_item.image "160x200" crop="center" as im %}
+                <img src="{{ im.url }}"  alt="" >
+              {% endthumbnail %}
+              </div>
+              <div class="col-md-8">
+                <div class="card-body">
+                  <h5 class="card-title">{{post_item.title}}</h5>
+                  <p class="card-text">{{post_item.description}}</p>
+                  <p class="card-text"><small class="text-muted">Last updated {{post_item.date_created}}</small></p>
+                  <p class="card-text"><small class="text-muted">By {{post_item.author}}</small></p>
+                  <a href="{%url 'feed:detail' post_item.id %}" class="btn btn-primary">view page</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        {%empty%}
+    <div class="col-sm-6 offset-3 text-center my-6 py-5">
+        <h2>Welcome!</h2>
+        <p>Add your first image</p>
+        <a href="{% url 'feed:add' %}" class="btn btn-lg btn-success">Upload Image</a>
+    </div>
+    {%endfor%}
+</div>
+</div>
+
+
+
+{%endblock%}
